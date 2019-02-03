@@ -57,17 +57,17 @@ class Orchestrator:
         # CHANGE from original code:
         # Here is where my code begins
 
-        # Step 1: indentifying and reducing observables
+        # Step 1: indentifying and reducing observables/evidence
         self.overwrite_log("STEP 1 : Factor Identification\n\n")
 
         factor_identifier = FactorIdentifier(self.network.nodes, self.network.probabilities, observed)
-        factors = factor_identifier.factor_identification()
+        factors = factor_identifier.factor_identification()  # dataframes with observed values removed
 
         # Step 2 Call elim_order() and run it to get the specified elimination order
         self.append_log("STEP 2 : Elimination Order\n\n")
 
-        ordered_list = elim_order()
-        self.append_log(f"Nodes after sorting: {ordered_list}\n")
+        ordered_list = elim_order()  # elimination order in alphabetical order
+        self.append_log(f"Nodes after sorting: {ordered_list}\n\n")
 
         # Step 3: Variable elimination
         self.append_log("STEP 3: Variable Elimination\n\n")
@@ -76,7 +76,7 @@ class Orchestrator:
 
         #test sumout:
         for key, factor in factors.items():
-            VarElim.sumout(factor, key)
+            VarElim.sum_out(factor, key)
 
 
 

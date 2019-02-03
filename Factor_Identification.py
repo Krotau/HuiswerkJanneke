@@ -87,11 +87,16 @@ class FactorIdentifier:
         :return:
         """
         factors = self.create_factors()
-        self.filter_observed(factors)
 
-        self.append_log("Check if data truly is removed from all factors:\n\n")
-        for key, factor_table in factors.items():
-            self.append_log(f"{factor_table.dataframe.to_string()}\n\n")
+        # check if observed is empty or not, if not empty then we remove observed from the FactorTables.
+        if self.observed:
+            self.filter_observed(factors)
+
+            self.append_log("Check if data truly is removed from all factors:\n\n")
+            for key, factor_table in factors.items():
+                self.append_log(f"{factor_table.dataframe.to_string()}\n\n")
+        else:
+            self.append_log("Observed is empty, skipped removal process\n\n")
 
         return factors
 

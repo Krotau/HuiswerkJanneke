@@ -23,8 +23,18 @@ if __name__ == '__main__':
     # print("Probabilities:")
     # print(net.probabilities)
 
-    # Make your variable elimination code in a seperate file: 'variable_elim'.
-    # You can call this file as follows:
+    # CHANGE from original code:
+    # Structurerized several destinct steps of the variabele elimination process
+    # to breakdown the code into multiple files:
+
+    # Step 1. Identifying and removing evidence from the probabilities
+    # The classes and methods for this step are writeen in Factor_Identification.py
+
+    # Step 2. Creating an elimination order for the variable elimination
+    # The function that creates the elimination order is defined below in elim_order().
+
+    # Step 3. Eliminating variables in the order from step 2.
+    # The classes and methodes for this step are written in Variable_Elimination.py
     ve = Orchestrator(net)
 
     # Set the node to be queried as follows:
@@ -42,10 +52,16 @@ if __name__ == '__main__':
     # CHANGE from original code:
     # Remade elim_order into a function that orders the nodes by name.
     def elim_order():
+        """
+        This function orders a the nodes from the network.
+
+        :return:
+        The nodes of the network are sorted in alphabetical order.
+        """
         with open("log.txt", "a") as log:
             log.write(f"Nodes before sorting: {str(net.nodes)}\n")
             return sorted(net.nodes)
 
-    # Call the variable elimination function for the queried node given the
+    # Call the run method of the Orchestrator class for the queried node given the
     # evidence and the elimination ordering as follows:
     ve.run(query, evidence, elim_order)
