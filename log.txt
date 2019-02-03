@@ -1,0 +1,40 @@
+STEP 1 : Factor Identification
+
+Check if data truly is removed from all factors:
+
+  Burglary  prob
+0     True  0.01
+1    False  0.99
+
+  Earthquake  prob
+0       True  0.02
+1      False  0.98
+
+   Alarm Burglary Earthquake   prob
+0   True     True       True  0.950
+1  False     True       True  0.050
+2   True    False       True  0.290
+3  False    False       True  0.710
+4   True     True      False  0.940
+5  False     True      False  0.060
+6   True    False      False  0.001
+7  False    False      False  0.999
+
+  JohnCalls  Alarm  prob
+0      True   True  0.90
+1     False   True  0.10
+2      True  False  0.05
+3     False  False  0.95
+
+  MaryCalls  Alarm  prob
+0      True   True  0.70
+1     False   True  0.30
+2      True  False  0.01
+3     False  False  0.99
+
+STEP 2 : Elimination Order
+
+Nodes before sorting: ['Burglary', 'Earthquake', 'Alarm', 'JohnCalls', 'MaryCalls']
+Nodes after sorting: ['Alarm', 'Burglary', 'Earthquake', 'JohnCalls', 'MaryCalls']
+STEP 3: Variable Elimination
+
